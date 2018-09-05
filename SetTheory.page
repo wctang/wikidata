@@ -1,0 +1,18 @@
+# 集合論
+## 名詞定義
+* 元素
+* 集合
+* 子集合
+* Universal Set 宇集 
+* Empty Set 空集 $\phi$
+* Intersection 交集
+* Union 聯集
+* Complement 補集 $A^c$
+* Difference 差集
+* Disjoint 不相交 $X \cap Y=\phi$ 
+* Muturally Exclusive 互斥: 一群集合，彼此不相交
+
+## 定理
+* De Morgan's Law:\
+$(A \cup B)^c = A^c \cap B^c$
+
