@@ -1,8 +1,10 @@
-# 機率
+---
+title: 機率
+...
 * [集合論](SetTheory)
 * [頑想學概率](https://www.coursera.org/learn/prob1)
 
-## 名詞定義
+# 名詞定義
 * Experment 實驗: Procedures 步驟, Model 模型, Observations 觀察
 * Outcome 結果: 實驗中可能的結果
 * Sample space 樣本空間 $S, U, \Omega$ : 實驗中所有可能結果的集合
@@ -11,12 +13,12 @@
 * 機率是一函數，自變數=事件，應變數=[0,1]實數
 * 機率是一映射，由事件空間映射至[0,1]
 
-## Axioms of Probability 公理
+# Axioms of Probability 公理
 * $P(E) \in \mathbb{R}, P(E) \geq 0, \forall E \in F$
 * $P(S) = 1$
 * $E_1,E_2,...,E_i \text{ are muturally exclusive} \implies P(\bigcup_{i=1}^\infty E_i) = \sum_{i=1}^\infty P(E_i)$
 
-## 定理
+# 定理
 * $E = \{o_1, o_2, ..., o_n\} \implies P(E) = P(\{o_1\}) + P(\{o_2\}) + ... + P(\{o_n\})$
 * $P(\phi) = 0$
 * $P(A) = 1 - P(A^c)$
@@ -26,10 +28,10 @@
 * $A \subset B \implies P(A) \leq P(B)$
 * $1 - \sum_{i=1}^n P(E_i) \leq P(\bigcup_{i=1}^n E_i) \leq \sum_{i=1}^n P(E_i), \text{ for any } E_i,E_2,...,E_n$
 
-## 條件機率
+# 條件機率
 * $P(X|Y)= \frac{P(X \cap Y)}{P(Y)}$, X: 關心的事件, Y:條件(已發生的事件)
 
-### 性質
+## 性質
 * $P(X|Y) \geq 0$
 * $P(X|X) = 1$
 * $A \cap B=\phi \implies P(A \cup B|Y) = P(A|Y) + P(B|Y)$
@@ -37,11 +39,11 @@
 Total Probability: $\implies \forall E, P(E) = P(E|C_1)P(C_1) + P(E|C_2)P(C_2) + ... + P(E|C_n)P(C_n)$\
 Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n P(E|C_i)P(C_i)}$
 
-## 獨立事件
+# 獨立事件
 * 如 $P(A \cap B) = P(A) P(B)$ 成立，則 A, B 為獨立事件。$P(A | B) = P(A)$
 * 多事件獨立: $E_1, E_2, ..., E_n$ 其中任選 $E_{i1}, E_{i2}, ..., E_{im}$ 均滿足 $P(E_{i1} \cap E_{i2} \cap ... \cap E_{im}) = P(E_{i1})P(E_{i2}) ... P(E_{im}), m = 2,3,...,n$
 
-## 排列組合
+# 排列組合
 * Distinguishable? 是否可區分
 * Replacement? 是否放回供下次抽選
 * Order matter? 是否順序有差異
@@ -53,7 +55,7 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * 可區分，不放回，無順序，n 取 $n_1, n_2, ..., n_m = {n \choose n_1}{n-n_1 \choose n_2}{n-n_1-n_2 \choose n_3} ... {n_m \choose n_m} = \frac{n!}{n_1!n_2! ... n_m!}$\
 (多項式係數 $(x_1 + x_2 + ... + x_m)^n = \sum_{n_1=0}^n\sum_{n_2=0}^n ... \sum_{n_m=0}^n \frac{n!}{n_1!n_2! ... n_m!} x_1^{n_1}x_2^{n_2} ... x_m^{n_m}$)
 
-## Random variable
+# Random variable
 * 把實驗結果(outcome)數字化的表示方式。大寫英文字母。
 * 其本質是函數而非變數。($X:S \mapsto \mathbb(R)$)
 
@@ -61,7 +63,7 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * 連續 R.V. 的值是有無窮多個，而且是「不可數」的無窮多個
 * 隨機變數的函數，也是隨機變數
 
-## 累積分佈函數 CDF
+# 累積分佈函數 CDF
 * 對任一個隨機變數 X，我們定義其 CDF 為函數：$F_X(x)=P(X\leq x)$
 * $P(a < X \leq b) = F_X(b) - F_X(a)$
 * $P(a \leq X \leq b) = F_X(b) - F_X(a) + P(X=a)$
