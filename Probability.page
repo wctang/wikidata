@@ -68,4 +68,10 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * $P(a < X \leq b) = F_X(b) - F_X(a)$
 * $P(a \leq X \leq b) = F_X(b) - F_X(a) + P(X=a)$
 * $P(a < X < b) = F_X(b) - F_X(a) - P(X=b)$
+* $F_X(-\infty) = 0, F_X(\infty) = 1$
+
+# 機率質量函數 (PMF, Probability Mass Function)
+* 只對離散 R.V. 定義其 PMF， $p_X(x) = P(X=x)$
+* $\forall x, F_X(x) = \sum_{n=-\infty}^{\lfloor x \rfloor}p_X(n)$
+* 機率分佈 (Probability Distribution): PMF 的分佈方式
 
