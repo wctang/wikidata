@@ -1,0 +1,20 @@
+~~~~~~~
+https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf
+https://console.cloud.google.com/compute/instances?project=gitit-215301&folder&organizationId
+https://hub.docker.com/r/marcelhuberfoo/pandoc-gitit/~/dockerfile/
+
+https://hub.docker.com/r/suitupalex/cabal-build/~/dockerfile/
+
+docker run -it --rm --name debian debian:stable-slim /bin/bash
+	
+docker run -d --name gitit -v /home/wctang/wiki:/data -e UNAME=$(id -u):$(id -g) -e GIT_COMMITTER_NAME="wctang" -e GIT_COMMITTER_EMAIL="wctang@gmail.com" --entrypoint "/entrypoint.sh" --workdir "/data" gitit3 gitit -f /data/gitit.conf  +RTS -I0 -RTS
+
+docker run -d --name nginx -v /home/wctang/nginx.conf:/etc/nginx/conf.d --link gitit:gitit -p 80:80 nginx:alpine
+
+docker exec -it gitit /bin/bash
+docker rm -f gitit
+docker exec -it nginx /bin/bash
+docker rm -f nginx
+
+http://35.229.182.169/_index
+~~~~~~~
