@@ -74,3 +74,4 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * 只對離散 R.V. 定義其 PMF， $p_X(x) = P(X=x)$
 * $\forall x, F_X(x) = \sum_{n=-\infty}^{\lfloor x \rfloor}p_X(n)$
 * 機率分佈 (Probability Distribution): PMF 的分佈方式
+
