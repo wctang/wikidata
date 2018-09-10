@@ -5,18 +5,17 @@ https://www.humankode.com/ssl/how-to-set-up-free-ssl-certificates-from-lets-encr
 first time
 
 ~~~
-# letsencrypt.conf
+# nginx.conf
 server {
     listen 80;
-    listen [::]:80;
-    server_name wiki.wctang.me;
+    server_name _;
 
+	root /data/letsencrypt;
+	
     location ~ /.well-known/acme-challenge {
         allow all;
-        root /usr/share/nginx/html;
     }
 
-    root /usr/share/nginx/html;
     index index.html;
 }
 ~~~
@@ -25,8 +24,8 @@ start nginx
 
 ~~~
 docker run -d --name nginx -p 80:80 \
-  -v /home/wctang/nginx/letsencrypt.conf:/etc/nginx/conf.d/default.conf \
-  -v /home/wctang/nginx/letsencrypt-site:/usr/share/nginx/html \
+  -v "/home/wctang/nginx/letsencrypt/nginx.conf:/etc/nginx/conf.d/default.conf" \
+  -v "/home/wctang/nginx/letsencrypt/data/:/data/letsencrypt/" \
   nginx:alpine
 
 ~~~
@@ -35,13 +34,12 @@ use certbot to generate test cert
 
 ~~~
 sudo docker run -it --rm \
-  -v /home/wctang/nginx/test-letsencrypt-etc:/etc/letsencrypt \
-  -v /home/wctang/nginx/letsencrypt-site:/data/letsencrypt \
-  -v /tmp/letsencrypt-log:/var/log/letsencrypt \
+  -v "/home/wctang/nginx/letsencrypt/etc/:/etc/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/data/:/data/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/log/:/var/log/letsencrypt/" \
   certbot/certbot \
-    certonly --webroot \
+    certonly --webroot --webroot-path=/data/letsencrypt \
     --register-unsafely-without-email --agree-tos \
-    --webroot-path=/data/letsencrypt \
     --staging \
     -d wiki.wctang.me
 ~~~
@@ -50,8 +48,9 @@ view test cert
 
 ~~~
 sudo docker run --rm -it --name certbot \
-  -v /home/wctang/nginx/letsencrypt-etc:/etc/letsencrypt \
-  -v /home/wctang/nginx/letsencrypt-site:/data/letsencrypt \
+  -v "/home/wctang/nginx/letsencrypt/etc/:/etc/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/data/:/data/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/log/:/var/log/letsencrypt/" \
   certbot/certbot \
     --staging \
     certificates
@@ -61,20 +60,19 @@ if test sucess, enroll
 
 ~~~
 sudo docker run -it --rm \
-  -v /home/wctang/nginx/letsencrypt-etc:/etc/letsencrypt \
-  -v /home/wctang/nginx/letsencrypt-site:/data/letsencrypt \
-  -v /tmp/letsencrypt-log:/var/log/letsencrypt \
+  -v "/home/wctang/nginx/letsencrypt/etc/:/etc/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/data/:/data/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/log/:/var/log/letsencrypt/" \
   certbot/certbot \
-    certonly --webroot \
+    certonly --webroot --webroot-path=/data/letsencrypt \
     --email wctang@gmail.com --agree-tos --no-eff-email \
-    --webroot-path=/data/letsencrypt \
     -d wiki.wctang.me
 ~~~
 
 generate dhparam file.
 
 ~~~
-sudo openssl dhparam -out /home/wctang/nginx/dhparam-2048.pem 2048
+sudo openssl dhparam -out /home/wctang/nginx/letencrypt/dhparam-2048.pem 2048
 ~~~
 
 set up production config
@@ -84,23 +82,16 @@ set up production config
 server {
     listen 80;
     listen [::]:80;
-    server_name wiki.wctang.me;
-
-    location / {
-        proxy_pass       http://gitit:5001/;
-        proxy_set_header X-Real-IP  $remote_addr;
-        proxy_redirect   off;
-    }
-
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
+    server_name _;
 
     #for certbot challenges (renewal process)
     location ~ /.well-known/acme-challenge {
         allow all;
         root /data/letsencrypt;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
     }
 }
 
@@ -113,7 +104,6 @@ server {
 
     ssl on;
     ssl_buffer_size 8k;
-    ssl_dhparam /etc/ssl/certs/dhparam-2048.pem;
     ssl_protocols TLSv1.2 TLSv1.1;
     ssl_prefer_server_ciphers on;
     ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:!DH+3DES:!ADH:!AECDH:!MD5;
@@ -127,8 +117,17 @@ server {
 
     ssl_certificate     /etc/letsencrypt/live/wiki.wctang.me/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/wiki.wctang.me/privkey.pem;
+    ssl_dhparam         /etc/ssl/certs/dhparam-2048.pem;
+
 
     location / {
+        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+        add_header X-XSS-Protection "1; mode=block" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        
         proxy_pass       http://gitit:5001/;
         proxy_set_header X-Real-IP  $remote_addr;
         proxy_redirect   off;
@@ -140,11 +139,12 @@ stop first time nginx, start production nginx
 
 ~~~
 docker rm -f nginx
+
 docker run -d --name nginx --link gitit:gitit -p 80:80 -p 443:443 \
-   -v /home/wctang/nginx/nginx.conf:/etc/nginx/conf.d/default.conf \
-   -v /home/wctang/nginx/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem \
-   -v /home/wctang/nginx/letsencrypt-etc/live/wiki.wctang.me/fullchain.pem:/etc/letsencrypt/live/wiki.wctang.me/fullchain.pem \
-   -v /home/wctang/nginx/letsencrypt-etc/live/wiki.wctang.me/privkey.pem:/etc/letsencrypt/live/wiki.wctang.me/privkey.pem \
-   nginx:alpine
+  -v "/home/wctang/nginx/nginx.conf:/etc/nginx/conf.d/default.conf" \
+  -v "/home/wctang/nginx/letsencrypt/etc/:/etc/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/data/:/data/letsencrypt/" \
+  -v "/home/wctang/nginx/letsencrypt/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem" \
+  nginx:alpine
 ~~~
 
