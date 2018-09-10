@@ -75,3 +75,7 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * $\forall x, F_X(x) = \sum_{n=-\infty}^{\lfloor x \rfloor}p_X(n)$
 * 機率分佈 (Probability Distribution): PMF 的分佈方式
 
+# 離散機率分佈
+* Bernouli 機率分佈: 實驗成功機率=$p$, $X$ = 一次實驗成功次數。$X \sim Bernouli(p) \implies p_X(x) = \begin{cases}p & x = 1\\1-p & x =0 \\0 & otherwise.\end{cases}$, $F_X(x) = \begin{cases}0 & x < 0\\1-p & 0 \leq x < 1 \\1 & x \geq 1\end{cases}$
+* Binomial 機率分佈: 實驗成功機率=$p$, $X$ = n 次實驗成功次數。$X \sim BIN(n,p) \implies p_X(x) = {n \choose x}p^x(1-p)^{n-x}$, $F_X(x) = \sum_{m=-\infty}^{\lfloor x \rfloor}{n \choose m}p^m(1-p)^{n-m}$
+* 
