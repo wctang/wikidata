@@ -16,18 +16,6 @@ docker run -d --name gitit \
   -e GIT_COMMITTER_EMAIL="wctang@gmail.com" \
   wctang/gitit-docker:latest 
 
-....or
-
-docker run -d --name gitit \
-  -v /home/wctang/wiki:/data \
-  -e UNAME=$(id -u):$(id -g) \
-  -e GIT_COMMITTER_NAME="wctang" \
-  -e GIT_COMMITTER_EMAIL="wctang@gmail.com" \
- --entrypoint "/entrypoint.sh" \
- --workdir "/data" \
-  wctang/gitit-docker:latest \
-  gitit -f /data/gitit.conf  +RTS -I0 -RTS
-
 
 login into machine
 
