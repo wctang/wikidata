@@ -1,0 +1,6 @@
+Dot...
+
+~~~ {.dot}
+digraph G {Hello->World}
+~~~
+
