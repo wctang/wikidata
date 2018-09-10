@@ -148,3 +148,11 @@ docker run -d --name nginx --link gitit:gitit -p 80:80 -p 443:443 \
   nginx:alpine
 ~~~
 
+
+add cron 
+
+~~~
+0 23 * * * docker run --rm -it --name certbot -v "/home/wctang/nginx/letsencrypt/etc/:/etc/letsencrypt/" -v "/home/wctang/nginx/letsencrypt/data/:/data/letsencrypt/" -v "/home/wctang/nginx/letsencrypt/log/:/var/log/letsencrypt/" certbot/certbot renew --webroot -w /data/letsencrypt --quiet && docker restart nginx
+~~~
+
+
