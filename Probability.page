@@ -44,16 +44,19 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * 多事件獨立: $E_1, E_2, ..., E_n$ 其中任選 $E_{i1}, E_{i2}, ..., E_{im}$ 均滿足 $P(E_{i1} \cap E_{i2} \cap ... \cap E_{im}) = P(E_{i1})P(E_{i2}) ... P(E_{im}), m = 2,3,...,n$
 
 # 排列組合
-* Distinguishable? 是否可區分
-* Replacement? 是否放回供下次抽選
-* Order matter? 是否順序有差異
+* Replacement? 是否放回供下次抽選? 可否重覆拿同一個?
+* Distinguishable? Order matter? 是否可區分? 是否順序有差異?
 
-* 可區分，需放回，有順序，結果數量 = $n \times n \times n \times ... \times n = n^k$
-* 可區分，不放回，有順序，n 排 k = $n \times n-1 \times n-2 \times ... \times n-(k-1) = \frac{n!}{(n-k)!}$ (排列)
-* 可區分，不放回，無順序，n 取 k = 排列 / 無序重覆 = $\frac{n!}{(n-k)!k!} = {n \choose k}$ (組合)\
-(二項式係數 $(x + y)^n = \sum_{k=0}^n {n \choose k} x^ky^{n-k}$)
-* 可區分，不放回，無順序，n 取 $n_1, n_2, ..., n_m = {n \choose n_1}{n-n_1 \choose n_2}{n-n_1-n_2 \choose n_3} ... {n_m \choose n_m} = \frac{n!}{n_1!n_2! ... n_m!}$\
-(多項式係數 $(x_1 + x_2 + ... + x_m)^n = \sum_{n_1=0}^n\sum_{n_2=0}^n ... \sum_{n_m=0}^n \frac{n!}{n_1!n_2! ... n_m!} x_1^{n_1}x_2^{n_2} ... x_m^{n_m}$)
+* $n \times n \times n \times ... \times n = n^k$
+    * n 種東西，每種個數不限，取出 k 個排成一列 
+* 排列: $n \times n-1 \times n-2 \times ... \times n-(k-1) = \frac{n!}{(n-k)!}$ (n 排 k)
+    * n 種東西，每種一個，取出 k 個排成一列
+* 組合: $\frac{n!}{(n-k)!k!} = {n \choose k}$ (n 取 k)
+    * n 種東西，每種一個，取出 k 個
+    * 二項式係數 $(x + y)^n = \sum_{k=0}^n {n \choose k} x^ky^{n-k}$
+* n 取 $n_1, n_2, ..., n_m = {n \choose n_1}{n-n_1 \choose n_2}{n-n_1-n_2 \choose n_3} ... {n_m \choose n_m} = \frac{n!}{n_1!n_2! ... n_m!}$
+    * n 種東西，每種一個，取出 $n_1, n_2, ..., n_m$ 個, 
+    * 多項式係數 $(x_1 + x_2 + ... + x_m)^n = \sum_{n_1=0}^n\sum_{n_2=0}^n ... \sum_{n_m=0}^n \frac{n!}{n_1!n_2! ... n_m!} x_1^{n_1}x_2^{n_2} ... x_m^{n_m}$
 
 # Random variable
 * 把實驗結果(outcome)數字化的表示方式。大寫英文字母。
