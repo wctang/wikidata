@@ -79,13 +79,13 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * 機率分佈 (Probability Distribution): PMF 的分佈方式
 
 # 離散機率分佈
-* Bernouli 機率分佈: 單次實驗 $S = \{0,1\}, P(1) = p$。$X$ = 1 次實驗中，結果=1的次數。\
-$X \sim Bernouli(p) \implies p_X(x) = \begin{cases}p & x = 1\\1-p & x =0 \\0 & otherwise.\end{cases}$, $F_X(x) = \begin{cases}0 & x < 0\\1-p & 0 \leq x < 1 \\1 & x \geq 1\end{cases}$
-* Binomial 機率分佈: 單次實驗 $S = \{0,1\}, P(1) = p$。$X$ = n 次實驗中，結果=1的次數。\
-$X \sim BIN(n,p) \implies p_X(x) = {n \choose x}p^x(1-p)^{n-x}$, $F_X(x) = \sum_{m=-\infty}^{\lfloor x \rfloor}{n \choose m}p^m(1-p)^{n-m}$
-* Uniform 機率分佈: 單次實驗$S = \{a, a+1, ..., b\}, P(a) = P(a+1) = ... = P(b)$。$X$ = 1 次實驗出現某結果次數。\
-$X \sim UNIF(a,b) \implies p_X(x) = \begin{cases}\frac{1}{b-a+1} & x = a, a+1, ..., b\\0 & otherwise\end{cases}$, $F_X(x) = \begin{cases}0 & x < a \\ \frac{\lfloor x \rfloor - a + 1}{b-a+1} & a \leq x < b\\1 & x \geq b\end{cases}$
-* Geometric 機率分佈: \
-$X \sim Geometric(a,b)$
+* Bernouli 機率分佈: 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: 1次實驗中，結果中1的個數。\
+$X \sim Bernouli(p) \implies p_X(x) = \begin{cases}p & x = 1\\1-p & x =0 \\0 & otherwise.\end{cases}, F_X(x) = \begin{cases}0 & x < 0\\1-p & 0 \leq x < 1 \\1 & x \geq 1\end{cases}$
+* Binomial 機率分佈: 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: n次實驗中，結果中1的個數。\
+$X \sim BIN(n,p) \implies p_X(x) = {n \choose x}p^x(1-p)^{n-x}, F_X(x) = \sum_{m=-\infty}^{\lfloor x \rfloor}{n \choose m}p^m(1-p)^{n-m}$
+* Uniform 機率分佈: 單次實驗$S = \{a, a+1, ..., b\}, P(a) = P(a+1) = ... = P(b)$。$X$: 1次實驗出現某結果。\
+$X \sim UNIF(a,b) \implies p_X(x) = \begin{cases}\frac{1}{b-a+1} & x = a, a+1, ..., b\\0 & otherwise\end{cases}, F_X(x) = \begin{cases}0 & x < a \\ \frac{\lfloor x \rfloor - a + 1}{b-a+1} & a \leq x < b\\1 & x \geq b\end{cases}$
+* Geometric 機率分佈: 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: 多次實驗，第一次出現1時所嘗試的實驗次數。\
+$X \sim Geometric(p) \implies p_X(x) = \begin{cases}(1-p)^{x-1}p & x = 1,2,3,...\\0 & otherwise \end{cases}, F_X(x) = \begin{cases}1-(1-p)^{\lfloor x \rfloor} & x \geq 1\\0 & otherwise\end{cases}$
 
 
