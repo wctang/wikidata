@@ -95,4 +95,4 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * Poisson 機率分佈 (帕松分佈):
     * 某結果出現平均速率 (次數/時間) 已知，問某時間長度後，出現該結果 k 次之機率。
     * 某事件單位時間內發生次數 $\lambda$，經過 T 時間單位，$X$ 為出現某事件次數。
-    * $X \sim POI(\lambda T) \implies p_X(x) = P(X = x) = e^{-\lambda T}\frac{(\lambda T)^x}{x!}$
+    * $X \sim POI(\lambda T) \implies p_X(x) = P(X = x) = e^{-\lambda T}\frac{(\lambda T)^x}{x!}, F_X(x)=\begin{cases} \sum^{\lfloor x \rfloor}_{n=-\infty} e^{-\mu}\frac{\mu^n}{n!} & x = 0,1,2,...\\0 & otherwise\end{cases}$
