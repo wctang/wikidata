@@ -85,3 +85,7 @@ $X \sim Bernouli(p) \implies p_X(x) = \begin{cases}p & x = 1\\1-p & x =0 \\0 & o
 $X \sim BIN(n,p) \implies p_X(x) = {n \choose x}p^x(1-p)^{n-x}$, $F_X(x) = \sum_{m=-\infty}^{\lfloor x \rfloor}{n \choose m}p^m(1-p)^{n-m}$
 * Uniform 機率分佈: 單次實驗$S = \{a, a+1, ..., b\}, P(a) = P(a+1) = ... = P(b)$。$X$ = 1 次實驗出現某結果次數。\
 $X \sim UNIF(a,b) \implies p_X(x) = \begin{cases}\frac{1}{b-a+1} & x = a, a+1, ..., b\\0 & otherwise\end{cases}$, $F_X(x) = \begin{cases}0 & x < a \\ \frac{\lfloor x \rfloor - a + 1}{b-a+1} & a \leq x < b\\1 & x \geq b\end{cases}$
+* Geometric 機率分佈: \
+$X \sim Geometric(a,b)$
+
+
