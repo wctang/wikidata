@@ -30,8 +30,6 @@ title: 機率
 
 # 條件機率
 * $P(X|Y)= \frac{P(X \cap Y)}{P(Y)}$, X: 關心的事件, Y:條件(已發生的事件)
-
-## 性質
 * $P(X|Y) \geq 0$
 * $P(X|X) = 1$
 * $A \cap B=\phi \implies P(A \cup B|Y) = P(A|Y) + P(B|Y)$
