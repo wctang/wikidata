@@ -1,0 +1,14 @@
+* machine learning: improving some **performance measure** with experience **computed** from **data**, an alternative route to build complicated systems.
+    * exists some ‘underlying pattern’ to be learned
+    * but no programmable (easy) definition
+    * somehow there is data about the pattern
+
+# Notation
+* input $x \in \mathcal{X}$
+* output $y \in \mathcal{Y}$
+* target function (unknown): $f:\mathcal{X} \mapsto \mathcal{Y}$
+* data (training examples): $\mathcal{D} = \{(x_1, y_1), (x_2, y_2), ..., (x_N, y_N)\}$
+* hypothesis (skill with hopefully good performance): $g:\mathcal{X} \mapsto \mathcal{Y}$ 
+* learning model: learning algorithm $\mathcal{A}$, hypothesis set $\mathcal{H}$
+
+machine learning: $\mathcal{A}$ takes $\mathcal{D}$ and $\mathcal{H}$ to get $g$ that approximates target $f$
