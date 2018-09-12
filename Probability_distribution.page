@@ -1,0 +1,23 @@
+---
+title: 機率分佈
+...
+
+# Bernouli 機率分佈
+    * 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: 1次實驗中，結果中1的個數。
+    * $X \sim Bernouli(p) \implies p_X(x) = \begin{cases}p & x = 1\\1-p & x =0 \\0 & otherwise.\end{cases}, F_X(x) = \begin{cases}0 & x < 0\\1-p & 0 \leq x < 1 \\1 & x \geq 1\end{cases}$
+# Binomial 機率分佈
+    * 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: n次實驗中，結果中1的個數。
+    * $X \sim BIN(n,p) \implies p_X(x) = {n \choose x}p^x(1-p)^{n-x}, F_X(x) = \sum_{m=-\infty}^{\lfloor x \rfloor}{n \choose m}p^m(1-p)^{n-m}$
+# Uniform 機率分佈
+    * 單次實驗$S = \{a, a+1, ..., b\}, P(a) = P(a+1) = ... = P(b)$。$X$: 1次實驗出現某結果。
+    * $X \sim UNIF(a,b) \implies p_X(x) = \begin{cases}\frac{1}{b-a+1} & x = a, a+1, ..., b\\0 & otherwise\end{cases}, F_X(x) = \begin{cases}0 & x < a \\ \frac{\lfloor x \rfloor - a + 1}{b-a+1} & a \leq x < b\\1 & x \geq b\end{cases}$
+# Geometric 機率分佈 (幾合分佈)
+    * 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: 多次實驗，第一次出現1時所嘗試的實驗次數。 **有失憶性** 
+    * $X \sim Geometric(p) \implies p_X(x) = \begin{cases}(1-p)^{x-1}p & x = 1,2,3,...\\0 & otherwise \end{cases}, F_X(x) = \begin{cases}1-(1-p)^{\lfloor x \rfloor} & x \geq 1\\0 & otherwise\end{cases}$
+# Pascal 機率分佈: (Negative Binomial)
+    * 單次實驗 $S = \{0,1\}, P(1) = p$。$X$: 多次實驗，第$k$次出現1時所嘗試的實驗次數。
+    * $X \sim Pascal(k,p) \implies p_X(x) = \begin{cases}{x-1 \choose k-1}(1-p)^{x-k}p^k & x = k,k+1,...\\0 & otherwise \end{cases}, F_X(x) = P(X \leq x) = P(Y \geq k), Y \sim BIN(x,p)$
+# Poisson 機率分佈 (帕松分佈)
+    * 某結果出現平均速率 (次數/時間) 已知，問某時間長度後，出現該結果 k 次之機率。
+    * 某事件單位時間內發生次數 $\lambda$，經過 T 時間單位，$X$ 為出現某事件次數。
+    * $X \sim POI(\lambda T) \implies p_X(x) = P(X = x) = e^{-\lambda T}\frac{(\lambda T)^x}{x!}, F_X(x)=\begin{cases} \sum^{\lfloor x \rfloor}_{n=-\infty} e^{-\mu}\frac{\mu^n}{n!} & x = 0,1,2,...\\0 & otherwise\end{cases}$
