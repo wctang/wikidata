@@ -13,7 +13,7 @@ title: 機率
 * 機率是一函數，自變數=事件，應變數=[0,1]實數
 * 機率是一映射，由事件空間映射至[0,1]
 
-# Axioms of Probability 公理
+# 機率公理
 * $P(E) \in \mathbb{R}, P(E) \geq 0, \forall E \in F$
 * $P(S) = 1$
 * $E_1,E_2,...,E_i \text{ are muturally exclusive} \implies P(\bigcup_{i=1}^\infty E_i) = \sum_{i=1}^\infty P(E_i)$
@@ -46,14 +46,17 @@ Bayes' Rule: $\implies \forall E, P(C_j|E) = \frac{P(E|C_j)P(C_j)}{\sum_{i=1}^n 
 * Distinguishable? Order matter? 是否可區分? 是否順序有差異?
 
 * $n \times n \times n \times ... \times n = n^k$
-    * n 種東西，每種個數不限，取出 k 個排成一列 
-* 排列: $n \times n-1 \times n-2 \times ... \times n-(k-1) = \frac{n!}{(n-k)!}$ (n 排 k)
-    * n 種東西，每種一個，取出 k 個排成一列
-* 組合: $\frac{n!}{(n-k)!k!} = {n \choose k}$ (n 取 k)
-    * n 種東西，每種一個，取出 k 個
+    * n 種東西，每種個數不限，取出 k 個排成一列
+    * k 個位置，每個位置有 n 種選擇
+* 排列: $n \times n-1 \times n-2 \times ... \times n-(k-1) = \frac{n!}{(n-k)!}$
+    * n 個不同的東西，取出 k 個排成一列 (n 排 k)
+* 組合: $\frac{n!}{(n-k)!k!} = {n \choose k}$
+    * n 個不同的東西，取出 k 個。(n 取 k)
+    * n 個位置，用 2 種東西排，一種 k 個另一種 n-k 個。(排的方式)
     * 二項式係數 $(x + y)^n = \sum_{k=0}^n {n \choose k} x^ky^{n-k}$
-* n 取 $n_1, n_2, ..., n_m = {n \choose n_1}{n-n_1 \choose n_2}{n-n_1-n_2 \choose n_3} ... {n_m \choose n_m} = \frac{n!}{n_1!n_2! ... n_m!}$
-    * n 種東西，每種一個，取出 $n_1, n_2, ..., n_m$ 個, 
+* $n = \sum_{k=1}^{m}n_k$, n 取 $n_1, n_2, ..., n_m = {n \choose n_1}{n-n_1 \choose n_2}{n-n_1-n_2 \choose n_3} ... {n_m \choose n_m} = \frac{n!}{n_1!n_2! ... n_m!}$
+    * n 個不同的東西，取出 $n_1, n_2, ..., n_m$ 個, 
+    * n 個位置，用 m 種東西排，個數分別為 $n_1, n_2, ..., n_m$ 個
     * 多項式係數 $(x_1 + x_2 + ... + x_m)^n = \sum_{n_1=0}^n\sum_{n_2=0}^n ... \sum_{n_m=0}^n \frac{n!}{n_1!n_2! ... n_m!} x_1^{n_1}x_2^{n_2} ... x_m^{n_m}$
 
 # Random variable
